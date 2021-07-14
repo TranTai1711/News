@@ -112,4 +112,12 @@ module.exports = {
             return res.status(500).json({msg: err.message})
         }
     },
+    getAllUser: async(req,res) => {
+        try {
+            const users = await Usere.find()
+            res.json(users)
+        } catch (err) {
+            return res.status(500).json({msg:err.message})
+        }
+    }
 }
