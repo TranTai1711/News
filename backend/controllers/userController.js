@@ -28,7 +28,7 @@ module.exports = {
                 name, email, password: passwordHash
             })
 
-            mq.publish('user', 'created_user',JSON.stringify(newUser))
+            // mq.publish('user', 'created_user',JSON.stringify(newUser))
 
 
             //save mongodb

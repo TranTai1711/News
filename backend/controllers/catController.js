@@ -1,10 +1,14 @@
 const Category = require('../models/catModel')
 // const Products = require('../models/productModel')
+const mq = require('./rabbitmq')
+
 
 module.exports = {
     getCategories: async(req, res) =>{
         try {
             const categories = await Category.find()
+            // mq.publish('cat', 'get_cat',JSON.stringify(categories))
+
             res.json(categories)
         } catch (err) {
             return res.status(500).json({msg:err.message})

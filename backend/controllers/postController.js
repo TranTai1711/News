@@ -36,6 +36,8 @@ postController = {
         try {
             const features = new APIfeatures(Post.find(), req.query).filtering()
             const posts = await features.query
+            // mq.publish('post', 'get_post',JSON.stringify(posts))
+
             res.json(posts)
         } catch (err) {
             return res.status(500).json({ msg: err.message })
@@ -64,7 +66,7 @@ postController = {
     },
     deletePosts: async (req, res) => {
         try {
-            const deletes = await Post.findByIdAndDelete(req.params.id)
+            await Post.findByIdAndDelete(req.params.id)
             // mq.publish('post', 'delete_post',JSON.stringify(deletes))
 
             res.json({ msg: 'Deleted a post' })
