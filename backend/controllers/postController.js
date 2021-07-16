@@ -57,9 +57,9 @@ postController = {
             const newPost = new Post({
                 title, desc, photo, username, categories
             })
+            mq.publish('post', 'created_post',JSON.stringify(newPost))
             await newPost.save()
             res.json({ msg: "Created a post" })
-            mq.publish('post', 'created_post',JSON.stringify(newPost))
         } catch (err) {
             return res.status(500).json({ msg: err.message })
         }
@@ -68,8 +68,8 @@ postController = {
         try {
             const deletes = await Post.findByIdAndDelete(req.params.id)
             
+             mq.publish('post', 'delete_post',JSON.stringify(deletes))
             res.json({ msg: 'Deleted a post' })
-            mq.publish('post', 'delete_post',JSON.stringify(deletes))
         } catch (err) {
             return res.status(500).json({ msg: err.message })
         }

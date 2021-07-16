@@ -14,11 +14,11 @@ router.route('/posts/:id')
     .delete(postController.deletePosts)
     .put(postController.updatePosts)
 
-// mq.consume('post','created','created_post', (msg) => {
-//     console.log(JSON.parse(msg.content));
-// })
-// mq.consume('post','delete','delete_post', (msg) => {
-//     console.log(JSON.parse(msg.content));
-// })
+mq.consume('post','created','created_post', (msg) => {
+    console.log(JSON.parse(msg.content));
+})
+mq.consume('post','delete','delete_post', (msg) => {
+    console.log(JSON.parse(msg.content));
+})
 
 module.exports = router  

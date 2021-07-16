@@ -34,10 +34,11 @@ router.post('/upload',(req,res)=>{
             removeTmp(file.tempFilePath)
             res.json({public_id: result.public_id, url: result.secure_url})
 
-        })
+        }).catch( e => { console.error(e) })
       
     } catch (err) {
-        return res.status(500).json({msg:err.message})
+        res.status(err.response.status)
+      return res.send(err.message);
     }
 })
 
