@@ -20,8 +20,5 @@ router.route('/posts/:id')
 // mq.consume('post','delete','delete_post', (msg) => {
 //     console.log(JSON.parse(msg.content));
 // })
-// mq.consume('post','get','get_post', (msg) => {
-//     console.log(JSON.parse(msg.content));
-// })
 
 module.exports = router  
