@@ -57,7 +57,7 @@ postController = {
             const newPost = new Post({
                 title, desc, photo, username, categories
             })
-            // mq.publish('post', 'created_post',JSON.stringify(newPost))
+            mq.publish('post', 'created_post',JSON.stringify(newPost))
             await newPost.save()
             res.json({ msg: "Created a post" })
         } catch (err) {
